@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# Autor: Alexis Rodriguez - 2016
+
+echo "Bienvenido al curso de empatamiento - SciDeb"
+echo " "
+echo "Este script verificará así mismo que se encuentra instalado"
+echo "la ruta correcta de acuerdo al FHS"
+echo " "
+read -t 5 -p "Presione ENTER o espere 5 segundos" 
+echo " "
+
+# Script obtenido de 
+# http://stackoverflow.com/questions/59895/can-a-bash-script-tell-which-directory-it-is-stored-in
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  TARGET="$(readlink "$SOURCE")"
+  if [[ $TARGET == /* ]]; then
+    SOURCE="$TARGET"
+  else
+    DIR="$( dirname "$SOURCE" )"
+   SOURCE="$DIR/$TARGET" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  fi
+done
+
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+if [[ $DIR = /usr/bin ]]; then
+  echo "Correcto el script está instaldo en '$DIR'"
+else
+  echo "Debes instalar el script en '/usr/bin'"
+  echo "el script se encuentra en '$DIR'"
+fi

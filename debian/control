@@ -11,5 +11,5 @@ Homepage: <insert the upstream URL, if relevant>
 Package: testpackage
 Architecture: all
 Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Description: empaquetamiento tp2 
+ Control de las versiones desde el devianizado
